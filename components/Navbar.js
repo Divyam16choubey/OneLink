@@ -7,7 +7,7 @@ const Navbar = () => {
     const pathname = usePathname()
     const showNavbar = ["/", "/generate"].includes(pathname)
 
-    return (<>{showNavbar && <nav className='bg-white w-[80vw] flex justify-between fixed top-10 right-[10vw] rounded-full p-5 px-7'>
+    return (<>{showNavbar && <nav className='bg-white w-[80vw] flex justify-between fixed top-10 right-[10vw] rounded-full p-3 px-7'>
         <div className="logo flex gap-20 items-center">
             <Link href="/" aria-label="OneLink Home">
                 <svg
