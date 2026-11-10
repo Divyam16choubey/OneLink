@@ -73,12 +73,12 @@ const GenerateForm = () => {
                         </div>
                         <div className="space-y-3">
                             <h2 className='font-semibold text-2xl'>Step 2: Add Links</h2>
-                        {links && links.map((item, index) => {
-                            return <div key={index} className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
-                                <input value={item.linktext || ""} onChange={e => { handleChange(index, item.link, e.target.value) }} className='w-full rounded-full bg-white px-5 py-3 text-gray-900 shadow-sm outline-none ring-1 ring-transparent placeholder:text-gray-500 focus:ring-2 focus:ring-pink-500' type="text" placeholder='Enter link text' />
-                                <input value={item.link || ""} onChange={e => { handleChange(index, e.target.value, item.linktext) }} className='w-full rounded-full bg-white px-5 py-3 text-gray-900 shadow-sm outline-none ring-1 ring-transparent placeholder:text-gray-500 focus:ring-2 focus:ring-pink-500' type="text" placeholder='Enter link' />
-                            </div>
-                        })}
+                            {links && links.map((item, index) => {
+                                return <div key={index} className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
+                                    <input value={item.linktext || ""} onChange={e => { handleChange(index, item.link, e.target.value) }} className='w-full rounded-full bg-white px-5 py-3 text-gray-900 shadow-sm outline-none ring-1 ring-transparent placeholder:text-gray-500 focus:ring-2 focus:ring-pink-500' type="text" placeholder='Enter link text' />
+                                    <input value={item.link || ""} onChange={e => { handleChange(index, e.target.value, item.linktext) }} className='w-full rounded-full bg-white px-5 py-3 text-gray-900 shadow-sm outline-none ring-1 ring-transparent placeholder:text-gray-500 focus:ring-2 focus:ring-pink-500' type="text" placeholder='Enter link' />
+                                </div>
+                            })}
                             <button onClick={() => addLink()} className='rounded-full bg-slate-900 px-5 py-3 font-bold text-white cursor-pointer'>+ Add Link</button>
                         </div>
 
