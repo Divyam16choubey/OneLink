@@ -79,7 +79,7 @@ const GenerateForm = () => {
                                 <input value={item.link || ""} onChange={e => { handleChange(index, e.target.value, item.linktext) }} className='w-full rounded-full bg-white px-5 py-3 text-gray-900 shadow-sm outline-none ring-1 ring-transparent placeholder:text-gray-500 focus:ring-2 focus:ring-pink-500' type="text" placeholder='Enter link' />
                             </div>
                         })}
-                            <button onClick={() => addLink()} className='rounded-full bg-slate-900 px-5 py-3 font-bold text-white'>+ Add Link</button>
+                            <button onClick={() => addLink()} className='rounded-full bg-slate-900 px-5 py-3 font-bold text-white cursor-pointer'>+ Add Link</button>
                         </div>
 
                         <div className="space-y-3">
@@ -87,7 +87,7 @@ const GenerateForm = () => {
                             <div className='flex flex-col gap-3'>
                                 <input value={pic || ""} onChange={e => { setpic(e.target.value) }} className='w-full rounded-full bg-white px-5 py-3 text-gray-900 shadow-sm outline-none ring-1 ring-transparent placeholder:text-gray-500 focus:ring-2 focus:ring-pink-500' type="text" placeholder='Enter link to your Picture' />
                                 <input value={desc || ""} onChange={e => { setdesc(e.target.value) }} className='w-full rounded-full bg-white px-5 py-3 text-gray-900 shadow-sm outline-none ring-1 ring-transparent placeholder:text-gray-500 focus:ring-2 focus:ring-pink-500' type="text" placeholder='Enter description' />
-                                <button disabled={pic == "" || handle == "" || links.length === 0 || links[0].linktext == ""} onClick={() => { submitLinks() }} className='mt-2 w-fit rounded-full bg-slate-900 px-5 py-3 font-bold text-white disabled:bg-slate-500'>Create your OneLink</button>
+                                <button disabled={pic == "" || handle == "" || links.length === 0 || links[0].linktext == ""} onClick={() => { submitLinks() }} className='mt-2 w-fit rounded-full bg-slate-900 px-5 py-3 font-bold text-white disabled:bg-slate-500 cursor-pointer'>Create your OneLink</button>
                             </div>
                         </div>
                     </div>
