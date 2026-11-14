@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# OneLink
 
-## Getting Started
+OneLink is a clean, customizable link-in-bio platform built for sharing social profiles, projects, and other important links from one page. It is inspired by the simple link-in-bio experience popularized by Linktree, with a focused flow for creating and publishing a personal profile.
 
-First, run the development server:
+## Tech Stack
+
+- **Next.js 16** with the App Router
+- **React 19**
+- **Tailwind CSS** for styling
+- **MongoDB** for profile and link data
+- **Turbopack** for local development and production builds
+- **React Toastify** for form success and error messages
+
+## Key Features
+
+- Claim a custom handle from the home page.
+- Add social links and other custom links with display text.
+- Add a profile picture URL and short description.
+- Prevent duplicate handles before saving a profile.
+- Render public profiles at `/<handle>`.
+- Use a responsive interface styled with Tailwind CSS.
+
+## Project Structure
+
+```text
+app/
+├── [handle]/page.js       # Public profile page backed by MongoDB
+├── api/add/route.js       # POST endpoint for creating a profile
+├── generate/page.js       # Profile creation form
+├── layout.js              # Root layout, fonts, metadata, and navigation
+├── page.js                # Home page and handle entry point
+└── globals.css            # Global styles
+
+components/
+└── Navbar.js              # Shared navigation bar
+
+lib/
+└── mongodb.js             # Shared MongoDB client connection
+```
+
+## Getting Started Locally
+
+### Prerequisites
+
+- Node.js and npm
+- A MongoDB deployment, either:
+  - a local MongoDB server, or
+  - a cloud MongoDB deployment such as MongoDB Atlas
+
+### 1. Install dependencies
+
+From the project root, run:
+
+```bash
+npm install
+```
+
+### 2. Configure MongoDB
+
+Create a `.env.local` file in the project root:
+
+```env
+MONGODB_URI=mongodb://127.0.0.1:27017
+```
+
+Replace the value with your MongoDB Atlas connection string if you are using a cloud database.
+
+OneLink uses the `onelink` database and stores profiles in the `links` collection.
+
+### 3. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Main Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Route | Purpose |
+| --- | --- |
+| `/` | Enter a handle and start creating a OneLink profile |
+| `/generate?handle=your-handle` | Add profile details and links |
+| `/[handle]` | View a published public profile |
+| `/api/add` | Save a new profile with a `POST` request |
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev    # Start the development server
+npm run build  # Create a production build
+npm run start  # Start the production server
+npm run lint   # Run ESLint
+```
