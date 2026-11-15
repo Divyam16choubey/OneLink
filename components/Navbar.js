@@ -7,11 +7,11 @@ const Navbar = () => {
     const pathname = usePathname()
     const showNavbar = ["/", "/generate"].includes(pathname)
 
-    return (<>{showNavbar && <nav className='bg-white w-[80vw] flex justify-between fixed top-10 right-[10vw] z-50 rounded-full p-3 px-7'>
-        <div className="logo flex gap-20 items-center">
+    return (<>{showNavbar && <nav className='fixed left-1/2 top-4 z-50 flex w-[calc(100%-2rem)] max-w-6xl -translate-x-1/2 items-center justify-between rounded-2xl border border-white/70 bg-white/70 p-3 px-4 shadow-xl shadow-slate-900/10 backdrop-blur-xl sm:top-6 sm:w-[calc(100%-3rem)] sm:rounded-full sm:px-6'>
+        <div className="logo flex min-w-0 items-center gap-3 sm:gap-10">
             <Link href="/" aria-label="OneLink Home">
                 <svg
-                    className="h-14 w-auto"
+                    className="h-10 w-auto sm:h-12"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 440 112"
                     fill="none"
@@ -55,7 +55,7 @@ const Navbar = () => {
                 </svg>
             </Link>
 
-            <ul className='flex gap-10'>
+            <ul className='hidden gap-6 text-sm font-medium text-slate-600 lg:flex'>
                 <Link href="/"><li>Templates </li></Link>
                 <Link href="/"><li>Marketplace</li></Link>
                 <Link href="/"><li>Discover</li></Link>
@@ -64,9 +64,9 @@ const Navbar = () => {
             </ul>
         </div>
 
-        <div className='flex gap-3'>
-            <button className="login bg-gray-400 p-4 rounded-lg font-bold">Log in</button>
-            <button className="signup bg-gray-900 text-white font-bold p-4 rounded-full"> Sign up free</button>
+        <div className='flex gap-2'>
+            <button className="login rounded-xl bg-slate-100 px-3 py-2 text-sm font-bold text-slate-700 hover:bg-slate-200 sm:px-4 sm:py-3">Log in</button>
+            <button className="signup rounded-xl bg-gray-900 px-3 py-2 text-sm font-bold text-white hover:bg-slate-700 sm:rounded-full sm:px-5 sm:py-3">Sign up free</button>
         </div>
     </nav>}
     </>
