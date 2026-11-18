@@ -17,7 +17,7 @@ const Navbar = () => {
                 className="group flex shrink-0 items-center rounded-full outline-none transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
             >
                 <svg
-                    className="h-9 w-auto sm:h-10"
+                    className="h-7 w-auto sm:h-10"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 440 112"
                     fill="none"
@@ -59,18 +59,34 @@ const Navbar = () => {
                 </svg>
             </Link>
 
+            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex">
+                <Link
+                    href="/#about"
+                    className="text-sm font-medium text-slate-600 outline-none transition-colors hover:text-slate-950 focus-visible:text-slate-950 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                >
+                    About
+                </Link>
+                <Link
+                    href="/#how-it-works"
+                    className="text-sm font-medium text-slate-600 outline-none transition-colors hover:text-slate-950 focus-visible:text-slate-950 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                >
+                    How It Works
+                </Link>
+            </div>
+
             <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
                 <Link
                     href="/login"
-                    className="rounded-full px-3 py-2 text-sm font-semibold text-slate-700 outline-none transition-colors hover:bg-slate-900/5 hover:text-slate-950 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 sm:px-4"
+                    className="rounded-full px-2.5 py-2 text-xs font-semibold text-slate-700 outline-none transition-colors hover:bg-slate-900/5 hover:text-slate-950 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 sm:px-4 sm:text-sm"
                 >
                     Log In
                 </Link>
                 <Link
                     href="/generate"
-                    className="rounded-full bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white shadow-sm outline-none transition-all hover:-translate-y-0.5 hover:bg-slate-700 hover:shadow-md active:translate-y-0 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 sm:px-5"
+                    className="rounded-full bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm outline-none transition-all hover:-translate-y-0.5 hover:bg-slate-700 hover:shadow-md active:translate-y-0 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 sm:px-5 sm:text-sm"
                 >
-                    Create Profile
+                    <span className="sm:hidden">Join</span>
+                    <span className="hidden sm:inline">Create Profile</span>
                 </Link>
             </div>
         </nav>
