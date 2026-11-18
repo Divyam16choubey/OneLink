@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb"
+import { hashPin, isValidPin } from "@/lib/pin"
 
 const HANDLE_RE = /^[a-z0-9_]{1,30}$/
 const BIO_MAX = 160
@@ -20,12 +21,20 @@ export async function POST(request) {
         return Response.json({ success: false, error: true, message: "Invalid request body.", result: null }, { status: 400 })
     }
 
-    const { handle, pic, desc, links } = body
+    const { handle, pic, desc, links, pin } = body
 
     if (!handle || typeof handle !== "string" || !HANDLE_RE.test(handle.trim())) {
         return Response.json({
             success: false, error: true,
             message: "Handle is required and must be 1–30 characters (letters, numbers, underscores only).",
+            result: null
+        }, { status: 400 })
+    }
+
+    if (!isValidPin(pin)) {
+        return Response.json({
+            success: false, error: true,
+            message: "An Edit PIN is required. Use a 4â€“6 digit PIN or a 4â€“64 character alphanumeric password.",
             result: null
         }, { status: 400 })
     }
@@ -99,6 +108,7 @@ export async function POST(request) {
 
     const doc = {
         handle: cleanedHandle,
+        pin: await hashPin(pin.trim()),
         pic: pic.trim(),
         desc: cleanedDesc,
         links: cleanedLinks,
