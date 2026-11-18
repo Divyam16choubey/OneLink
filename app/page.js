@@ -2,6 +2,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const SectionDivider = () => (
+  <div aria-hidden="true" className="relative mx-auto my-12 h-px w-[calc(100%-3rem)] max-w-6xl sm:my-16 sm:w-[calc(100%-5rem)] lg:w-[calc(100%-20vw)]">
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet-400/35 to-transparent" />
+    <div className="absolute left-1/2 top-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 bg-fuchsia-300/40 blur-sm" />
+  </div>
+)
+
 export default function Home() {
   const router = useRouter()
   const [text, setText] = useState("")
@@ -49,6 +56,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <SectionDivider />
       <section id="how-it-works" className="scroll-mt-28 relative px-6 py-24 sm:px-10 sm:py-32 lg:px-[10vw]">
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
@@ -71,6 +79,7 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionDivider />
       <section id="about" className="scroll-mt-28 relative px-6 py-20 sm:px-10 sm:py-28 lg:px-[10vw]">
         <div className="mx-auto grid max-w-6xl items-center gap-10 rounded-[2rem] border border-white/70 bg-white/60 p-6 shadow-xl shadow-fuchsia-950/10 backdrop-blur-md sm:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:p-16">
           <div>
