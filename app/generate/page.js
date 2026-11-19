@@ -15,6 +15,7 @@ const GenerateForm = () => {
     const [handle, setHandle] = useState(searchParams.get('handle') || "")
     const [pic, setPic] = useState("")
     const [desc, setDesc] = useState("")
+    const [pin, setPin] = useState("")
     const [submitting, setSubmitting] = useState(false)
     const [createdHandle, setCreatedHandle] = useState(null)
 
@@ -44,7 +45,7 @@ const GenerateForm = () => {
     }
 
     const hasValidLink = links.some(l => l.linktext.trim() !== "" && l.link.trim() !== "")
-    const canSubmit = handle.trim() !== "" && pic.trim() !== "" && hasValidLink
+    const canSubmit = handle.trim() !== "" && pic.trim() !== "" && pin.trim() !== "" && hasValidLink
 
     const submitLinks = async () => {
         setSubmitting(true)
@@ -58,6 +59,7 @@ const GenerateForm = () => {
             handle: handle.trim(),
             pic: pic.trim(),
             desc: desc.trim(),
+            pin: pin.trim(),
         });
 
         const requestOptions = {
@@ -141,6 +143,20 @@ const GenerateForm = () => {
                                     placeholder='yourhandle'
                                     maxLength={30}
                                 />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-slate-700">Choose an Edit PIN</label>
+                                <input
+                                    value={pin}
+                                    onChange={e => setPin(e.target.value)}
+                                    className='w-full rounded-2xl border border-white/80 bg-white/75 px-5 py-3 text-gray-900 shadow-sm outline-none placeholder:text-gray-500 focus:border-pink-400 focus:ring-4 focus:ring-pink-300/30'
+                                    type="password"
+                                    placeholder='4â€“6 digits or an alphanumeric password'
+                                    autoComplete="new-password"
+                                    minLength={4}
+                                    maxLength={64}
+                                />
+                                <p className="text-sm leading-6 text-slate-500">Youâ€™ll use this PIN whenever you want to edit your profile.</p>
                             </div>
                         </div>
 
