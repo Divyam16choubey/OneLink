@@ -97,7 +97,7 @@ const GenerateForm = () => {
     }
 
     return (
-        <div className='min-h-screen bg-[radial-gradient(circle_at_top_left,_#f7d8f7,_#e9c0e9_45%,_#d9b8e9)] px-4 pb-16 pt-32 sm:px-8 lg:px-16'>
+        <div className='bg-[radial-gradient(circle_at_top_left,_#f7d8f7,_#e9c0e9_45%,_#d9b8e9)] px-4 pb-16 pt-32 sm:px-8 lg:px-16'>
 
             {createdHandle && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
@@ -119,7 +119,7 @@ const GenerateForm = () => {
                                 onClick={() => router.push(`/${createdHandle}`)}
                                 className="rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 font-bold text-white shadow-lg shadow-purple-900/20 hover:-translate-y-0.5 hover:from-purple-500 hover:to-pink-500 active:translate-y-0"
                             >
-                                View my profile →
+                                View my profile &rarr;
                             </button>
                             <button
                                 onClick={() => {
@@ -163,12 +163,12 @@ const GenerateForm = () => {
                                     onChange={e => setPin(e.target.value)}
                                     className='w-full rounded-2xl border border-white/80 bg-white/75 px-5 py-3 text-gray-900 shadow-sm outline-none placeholder:text-gray-500 focus:border-pink-400 focus:ring-4 focus:ring-pink-300/30'
                                     type="password"
-                                    placeholder='4â€“6 digits or an alphanumeric password'
+                                    placeholder='4-6 digits or an alphanumeric password'
                                     autoComplete="new-password"
                                     minLength={4}
                                     maxLength={64}
                                 />
-                                <p className="text-sm leading-6 text-slate-500">Youâ€™ll use this PIN whenever you want to edit your profile.</p>
+                                <p className="text-sm leading-6 text-slate-500">You&apos;ll use this PIN whenever you want to edit your profile.</p>
                                 <p className="text-sm leading-6 text-slate-500">Save this PIN! There is no email recovery, though this device will remember your session.</p>
                             </div>
                         </div>
@@ -257,7 +257,7 @@ const GenerateForm = () => {
                                         onChange={e => setDesc(e.target.value.slice(0, BIO_MAX))}
                                         rows={3}
                                         className='w-full resize-none rounded-2xl border border-white/80 bg-white/75 px-5 py-3 text-gray-900 shadow-sm outline-none placeholder:text-gray-500 focus:border-pink-400 focus:ring-4 focus:ring-pink-300/30'
-                                        placeholder='Tell people what you do in a few words…'
+                                        placeholder='Tell people what you do in a few words...'
                                     />
                                 </div>
 
@@ -272,7 +272,7 @@ const GenerateForm = () => {
                                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                                             </svg>
-                                            Creating…
+                                            Creating...
                                         </span>
                                     ) : "Create your OneLink"}
                                 </button>

@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Link from "next/link"
 import { Suspense, useEffect, useState } from "react"
@@ -138,16 +138,16 @@ function EditDashboard() {
     }
 
     return (
-        <main className="relative isolate min-h-screen overflow-hidden bg-white px-4 pb-16 pt-28 sm:px-8 lg:px-16">
-            <div aria-hidden="true" className="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]" />
+        <main className="relative isolate min-h-screen overflow-hidden bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,.35)_0,rgba(253,232,245,.55)_60%,#fff_100%)] px-4 pb-16 pt-28 sm:px-8 lg:px-16">
+            <div aria-hidden="true" className="absolute inset-0 z-[-1] bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)] rotate-180" />
             <div className="mx-auto w-full max-w-3xl rounded-[2rem] border border-white/80 bg-white/60 p-6 shadow-2xl shadow-fuchsia-950/10 backdrop-blur-md sm:p-10">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
-                        <p className="text-sm font-medium uppercase tracking-[0.16em] texg-pink-600">Profile editor</p>
+                        <p className="text-sm font-medium uppercase tracking-[0.16em] text-pink-600">Profile editor</p>
                         <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Edit @{handle}</h1>
                         <p className="mt-2 text-slate-600">Keep your profile current, clear, and ready to share.</p>
                     </div>
-                    <Link href={`/${handle}`} target="_blank" className="shrink-0 rounded-xl border bordeg-pink-100 bg-white/70 px-4 py-2 text-sm font-semibold texg-pink-700 transition hover:bg-white">
+                    <Link href={`/${handle}`} target="_blank" className="shrink-0 rounded-xl border border-pink-100 bg-white/70 px-4 py-2 text-sm font-semibold text-pink-700 transition hover:bg-white">
                         View live profile
                     </Link>
                 </div>
@@ -162,8 +162,8 @@ function EditDashboard() {
                             {links.map((item, index) => (
                                 <div key={index} className="flex items-start gap-2">
                                     <div className="grid flex-1 gap-2 sm:grid-cols-2">
-                                        <input value={item.linktext} onChange={(event) => updateLink(index, "linktext", event.target.value)} className="w-full rounded-xl border bordeg-pink-100 bg-white/80 px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:bordeg-pink-400 focus:ring-4 focus:ring-pink-200/50" placeholder="Link label" />
-                                        <input value={item.link} onChange={(event) => updateLink(index, "link", event.target.value)} className="w-full rounded-xl border bordeg-pink-100 bg-white/80 px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:bordeg-pink-400 focus:ring-4 focus:ring-pink-200/50" type="url" placeholder="https://example.com" />
+                                        <input value={item.linktext} onChange={(event) => updateLink(index, "linktext", event.target.value)} className="w-full rounded-xl border border-pink-100 bg-white/80 px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-200/50" placeholder="Link label" />
+                                        <input value={item.link} onChange={(event) => updateLink(index, "link", event.target.value)} className="w-full rounded-xl border border-pink-100 bg-white/80 px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-200/50" type="url" placeholder="https://example.com" />
                                     </div>
                                     <button onClick={() => removeLink(index)} disabled={links.length === 1} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-rose-100 bg-rose-50 text-lg text-rose-600 transition hover:bg-rose-100 disabled:cursor-not-allowed disabled:opacity-40" aria-label={`Remove link ${index + 1}`}>×</button>
                                 </div>
@@ -175,15 +175,15 @@ function EditDashboard() {
                         <h2 className="text-xl font-semibold text-slate-900">Profile details</h2>
                         <label className="block space-y-2">
                             <span className="text-sm font-medium text-slate-700">Profile picture URL</span>
-                            <input value={pic} onChange={(event) => setPic(event.target.value)} className="w-full rounded-xl border bordeg-pink-100 bg-white/80 px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:bordeg-pink-400 focus:ring-4 focus:ring-pink-200/50" type="url" placeholder="https://example.com/avatar.jpg" />
+                            <input value={pic} onChange={(event) => setPic(event.target.value)} className="w-full rounded-xl border border-pink-100 bg-white/80 px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-200/50" type="url" placeholder="https://example.com/avatar.jpg" />
                         </label>
                         <label className="block space-y-2">
                             <span className="flex items-center justify-between text-sm font-medium text-slate-700">Bio <span className="font-normal text-slate-400">{desc.length}/{BIO_MAX}</span></span>
-                            <textarea value={desc} onChange={(event) => setDesc(event.target.value.slice(0, BIO_MAX))} rows={4} className="w-full resize-none rounded-xl border bordeg-pink-100 bg-white/80 px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:bordeg-pink-400 focus:ring-4 focus:ring-pink-200/50" placeholder="Tell people what you do..." />
+                            <textarea value={desc} onChange={(event) => setDesc(event.target.value.slice(0, BIO_MAX))} rows={4} className="w-full resize-none rounded-xl border border-pink-100 bg-white/80 px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-200/50" placeholder="Tell people what you do..." />
                         </label>
                     </section>
 
-                    <button onClick={saveChanges} disabled={saving} className="w-full rounded-2xl bg-gradient-to-r frog-pink-700 to-fuchsia-600 px-5 py-3 font-semibold text-white shadow-lg shadog-pink-950/20 transition hover:-translate-y-0.5 hover:frog-pink-600 hover:to-fuchsia-500 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60">
+                    <button onClick={saveChanges} disabled={saving} className="w-full rounded-2xl bg-gradient-to-r from-pink-700 to-fuchsia-600 px-5 py-3 font-semibold text-white shadow-lg shadow-pink-950/20 transition hover:-translate-y-0.5 hover:from-pink-600 hover:to-fuchsia-500 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60">
                         {saving ? "Saving changes..." : "Save Changes"}
                     </button>
                 </div>

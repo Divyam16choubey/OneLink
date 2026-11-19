@@ -7,7 +7,7 @@ const scrollToTop = (e) => {
 }
 
 const Footer = () => (
-    <footer className="border-t border-purple-100/60 bg-white/45 px-6 py-6 text-sm text-gray-600 backdrop-blur-md sm:px-10 lg:px-[10vw]">
+    <footer className="border-t border-purple-100/60 bg-white/70 px-6 py-6 text-sm text-gray-600 backdrop-blur-md sm:px-10 lg:px-[10vw]">
         <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-4 text-center md:flex-row md:justify-between md:text-left">
             <Link
                 href="/"

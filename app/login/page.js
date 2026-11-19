@@ -80,8 +80,8 @@ export default function LoginPage() {
     }
 
     return (
-        <main className="relative isolate flex min-h-screen items-center justify-center overflow-hidden bg-white px-4 py-28 sm:px-6">
-            <div aria-hidden="true" className="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]" />
+        <main className="relative isolate flex min-h-screen items-center justify-center bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,.4)_0,rgba(255,245,252,.6)_60%,#fff_100%)] px-4 py-28 sm:px-6">
+            <div aria-hidden="true" className="absolute inset-0 z-[-1] bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)] rotate-180" />
             <form onSubmit={submit} className="w-full max-w-md rounded-[2rem] border border-white/80 bg-white/60 p-6 shadow-2xl shadow-fuchsia-950/10 backdrop-blur-md sm:p-10">
                 <div className="space-y-3">
                     <p className="text-sm font-medium uppercase tracking-[0.16em] text-pink-600">Welcome back</p>
