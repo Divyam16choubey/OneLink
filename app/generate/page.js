@@ -97,7 +97,7 @@ const GenerateForm = () => {
     }
 
     return (
-        <div className='bg-[radial-gradient(circle_at_top_left,_#f7d8f7,_#e9c0e9_45%,_#d9b8e9)] px-4 pb-16 pt-32 sm:px-8 lg:px-16'>
+        <div className='flex-1 bg-[radial-gradient(circle_at_top_left,_#f7d8f7,_#e9c0e9_45%,_#d9b8e9)] px-4 pb-16 pt-32 sm:px-8 lg:px-16'>
 
             {createdHandle && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
@@ -181,6 +181,7 @@ const GenerateForm = () => {
                                     <div key={index} className='flex items-center gap-2'>
                                         <div className='grid flex-1 grid-cols-1 gap-2 sm:grid-cols-2'>
                                             <input
+                                            
                                                 value={item.linktext}
                                                 onChange={e => handleLinkChange(index, "linktext", e.target.value)}
                                                 className='w-full rounded-2xl border border-white/80 bg-white/75 px-5 py-3 text-gray-900 shadow-sm outline-none placeholder:text-gray-500 focus:border-pink-400 focus:ring-4 focus:ring-pink-300/30'

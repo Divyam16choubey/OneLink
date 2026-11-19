@@ -123,12 +123,12 @@ function EditDashboard() {
     }
 
     if (loading) {
-        return <main className="min-h-screen bg-[#fffafd] px-4 pt-32" />
+        return <main className="flex-1 bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,.35)_0,rgba(253,232,245,.55)_60%,#fff_100%)] px-4 pt-32" />
     }
 
     if (error) {
         return (
-            <main className="flex min-h-screen items-center justify-center bg-[#fffafd] px-4 pt-24">
+            <main className="flex flex-1 items-center justify-center bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,.35)_0,rgba(253,232,245,.55)_60%,#fff_100%)] px-4 pt-24">
                 <div className="max-w-md rounded-3xl border border-white/80 bg-white/60 p-8 text-center shadow-xl shadow-fuchsia-950/10 backdrop-blur-md">
                     <p className="text-lg font-semibold text-slate-900">{error}</p>
                     <Link href="/login" className="mt-5 inline-flex rounded-xl bg-pink-700 px-5 py-3 font-semibold text-white">Return to login</Link>
@@ -138,7 +138,7 @@ function EditDashboard() {
     }
 
     return (
-        <main className="relative isolate min-h-screen overflow-hidden bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,.35)_0,rgba(253,232,245,.55)_60%,#fff_100%)] px-4 pb-16 pt-28 sm:px-8 lg:px-16">
+        <main className="relative isolate flex-1 overflow-hidden bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,.35)_0,rgba(253,232,245,.55)_60%,#fff_100%)] px-4 pb-16 pt-28 sm:px-8 lg:px-16">
             <div aria-hidden="true" className="absolute inset-0 z-[-1] bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)] rotate-180" />
             <div className="mx-auto w-full max-w-3xl rounded-[2rem] border border-white/80 bg-white/60 p-6 shadow-2xl shadow-fuchsia-950/10 backdrop-blur-md sm:p-10">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -195,7 +195,7 @@ function EditDashboard() {
 
 export default function EditPage() {
     return (
-        <Suspense fallback={<main className="min-h-screen bg-[#fffafd]" />}>
+        <Suspense fallback={<main className="flex-1 bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,.35)_0,rgba(253,232,245,.55)_60%,#fff_100%)]" />}>
             <EditDashboard />
         </Suspense>
     )

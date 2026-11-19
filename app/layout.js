@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <Suspense fallback={null}>
           <Navbar />
         </Suspense>
-        <div className="flex-1">{children}</div>
+        <div className="flex flex-1 flex-col">{children}</div>
         <Footer />
       </body>
     </html>
