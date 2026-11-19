@@ -1,5 +1,5 @@
 import clientPromise from "@/lib/mongodb"
-import { isValidPin, verifyPin } from "@/lib/pin"
+import { isValidOwnerToken, isValidPin, verifyOwnerToken, verifyPin } from "@/lib/pin"
 
 const HANDLE_RE = /^[a-z0-9_]{1,30}$/
 const BIO_MAX = 160
@@ -25,14 +25,14 @@ export async function POST(request) {
         return invalid("Invalid request body.")
     }
 
-    const { handle, pin, pic, desc, links } = body
+    const { handle, pin, ownerToken, pic, desc, links } = body
 
     if (!handle || typeof handle !== "string" || !HANDLE_RE.test(handle.trim())) {
         return invalid("Handle is required and must be 1â€“30 characters (letters, numbers, underscores only).")
     }
 
-    if (!isValidPin(pin)) {
-        return invalid("A valid Edit PIN is required.")
+    if (!isValidPin(pin) && !isValidOwnerToken(ownerToken)) {
+        return invalid("A valid Edit PIN or device authorization is required.")
     }
 
     if (!pic || typeof pic !== "string" || !isValidUrl(pic.trim())) {
@@ -65,7 +65,10 @@ export async function POST(request) {
         return Response.json({ success: false, error: true, message: "OneLink profile not found.", result: null }, { status: 404 })
     }
 
-    if (!(await verifyPin(pin.trim(), profile.pin))) {
+    const verifiedByPin = isValidPin(pin) && await verifyPin(pin.trim(), profile.pin)
+    const verifiedByOwnerToken = isValidOwnerToken(ownerToken) && await verifyOwnerToken(ownerToken.trim(), profile.ownerTokenHash)
+
+    if (!verifiedByPin && !verifiedByOwnerToken) {
         return Response.json({ success: false, error: true, message: "Incorrect Edit PIN", result: null }, { status: 401 })
     }
 

@@ -23,6 +23,7 @@ function EditDashboard() {
     const requestedHandle = searchParams.get("handle")?.trim().toLowerCase()
     const [handle, setHandle] = useState("")
     const [pin, setPin] = useState("")
+    const [ownerToken, setOwnerToken] = useState("")
     const [pic, setPic] = useState("")
     const [desc, setDesc] = useState("")
     const [links, setLinks] = useState([])
@@ -47,7 +48,7 @@ function EditDashboard() {
             return
         }
 
-        if (session.handle !== requestedHandle || !session.pin) {
+        if (session.handle !== requestedHandle || (!session.pin && !session.ownerToken)) {
             router.replace("/login")
             return
         }
@@ -64,6 +65,7 @@ function EditDashboard() {
 
                 setHandle(result.profile.handle)
                 setPin(session.pin)
+                setOwnerToken(session.ownerToken)
                 setPic(result.profile.pic || "")
                 setDesc(result.profile.desc || "")
                 setLinks(result.profile.links?.length ? result.profile.links : [{ linktext: "", link: "" }])
@@ -102,12 +104,12 @@ function EditDashboard() {
             const response = await fetch("/api/update", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ handle, pin, pic: pic.trim(), desc: desc.trim(), links: cleanedLinks }),
+                body: JSON.stringify({ handle, pin, ownerToken, pic: pic.trim(), desc: desc.trim(), links: cleanedLinks }),
             })
             const result = await response.json()
 
             if (!response.ok) {
-                toast.error(response.status === 401 ? "Incorrect Edit PIN" : result.message || "Unable to save your profile.")
+                toast.error(response.status === 401 ? "Your edit authorization is no longer valid." : result.message || "Unable to save your profile.")
                 return
             }
 

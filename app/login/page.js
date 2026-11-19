@@ -11,6 +11,48 @@ export default function LoginPage() {
     const [pin, setPin] = useState("")
     const [submitting, setSubmitting] = useState(false)
 
+    const recoverWithDevice = async () => {
+        const cleanedHandle = handle.trim().toLowerCase()
+        if (!cleanedHandle) {
+            toast.error("Enter your handle to recover access from this device.")
+            return
+        }
+
+        let ownerToken
+        try {
+            ownerToken = localStorage.getItem(`onelink_owner_${cleanedHandle}`)
+        } catch {
+            ownerToken = null
+        }
+
+        if (!ownerToken) {
+            toast.error("Device authorization not found. For your security, PINs cannot be recovered from unverified devices.")
+            return
+        }
+
+        setSubmitting(true)
+        try {
+            const response = await fetch("/api/recover", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ handle: cleanedHandle, ownerToken }),
+            })
+            const result = await response.json()
+
+            if (!response.ok) {
+                toast.error(result.message || "Unable to verify this device.")
+                return
+            }
+
+            sessionStorage.setItem("onelink-edit-session", JSON.stringify({ handle: result.handle, ownerToken }))
+            router.push(`/edit?handle=${encodeURIComponent(result.handle)}`)
+        } catch {
+            toast.error("Something went wrong. Please try again.")
+        } finally {
+            setSubmitting(false)
+        }
+    }
+
     const submit = async (event) => {
         event.preventDefault()
         setSubmitting(true)
@@ -80,6 +122,14 @@ export default function LoginPage() {
                         className="w-full rounded-2xl bg-gradient-to-r from-pink-700 to-fuchsia-600 px-5 py-3 font-semibold text-white shadow-lg shadow-pink-950/20 transition hover:-translate-y-0.5 hover:from-pink-600 hover:to-fuchsia-500 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         {submitting ? "Unlocking..." : "Unlock profile"}
+                    </button>
+                    <button
+                        type="button"
+                        onClick={recoverWithDevice}
+                        disabled={submitting}
+                        className="mx-auto block text-sm font-medium text-slate-500 underline decoration-slate-300 underline-offset-4 transition hover:text-pink-700 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                        Forgot PIN? Recover via this device
                     </button>
                 </div>
             </form>

@@ -48,8 +48,14 @@ const GenerateForm = () => {
     const canSubmit = handle.trim() !== "" && pic.trim() !== "" && pin.trim() !== "" && hasValidLink
 
     const submitLinks = async () => {
+        if (!window.crypto?.randomUUID) {
+            toast.error("Your browser cannot create a secure device recovery token.")
+            return
+        }
+
         setSubmitting(true)
         const cleanedLinks = links.filter(l => l.linktext.trim() !== "" || l.link.trim() !== "")
+        const ownerToken = window.crypto.randomUUID()
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -60,6 +66,7 @@ const GenerateForm = () => {
             pic: pic.trim(),
             desc: desc.trim(),
             pin: pin.trim(),
+            ownerToken,
         });
 
         const requestOptions = {
@@ -73,6 +80,11 @@ const GenerateForm = () => {
             const r = await fetch("/api/add", requestOptions)
             const result = await r.json()
             if (result.success) {
+                try {
+                    localStorage.setItem(`onelink_owner_${handle.trim().toLowerCase()}`, ownerToken)
+                } catch {
+                    toast.warning("Your OneLink was created, but this browser could not save its device recovery authorization.")
+                }
                 setCreatedHandle(handle.trim())
             } else {
                 toast.error(result.message)
@@ -157,6 +169,7 @@ const GenerateForm = () => {
                                     maxLength={64}
                                 />
                                 <p className="text-sm leading-6 text-slate-500">Youâ€™ll use this PIN whenever you want to edit your profile.</p>
+                                <p className="text-sm leading-6 text-slate-500">Save this PIN! There is no email recovery, though this device will remember your session.</p>
                             </div>
                         </div>
 
